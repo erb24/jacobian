@@ -12,3 +12,6 @@ util.py: Python file containing a set of utility functions required to run the J
 jacobian.py: Python file containing the definitions of functions that calculate the Jacobian-corrected free-energy, energy (or enthalpy), and entropy
              along each latent space coordinate. Optionally ouputs plots of the free-energy profiles and projections of the latent variables and
              their cooresponding gradients along the input two-dimensional coordinate space.
+
+run_jacobian.ipynb: Jupyter notebook showing how to run the Jacobian codes for a pair of analytical potentials, one of which has a one-dimensoonal
+					latent space and the other which has a two-dimensional latent space.

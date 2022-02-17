@@ -534,11 +534,11 @@ def calc_energy_entropy_2d(data, z, dzdx1_traj, dzdy1_traj, dzdx2_traj, dzdy2_tr
 		z1_bins = np.linspace(z[:,0].min() - 1e-9, z[:,0].max() + 1e-9, nbins + 1)
 		z2_bins = np.linspace(z[:,1].min() - 1e-9, z[:,1].max() + 1e-9, nbins + 1)
 
-		U1_hist, U1_bins = np.histogram(z[:,0], bins = z1_bins, weights = Ut * njac1)
+		U1_hist, U1_bins = np.histogram(z[:,0], bins = z1_bins, weights = Ut * jac1)
 		counter1, dummy = np.histogram(z[:,0], bins = z1_bins, weights = jac1)
 		U2_hist, U2_bins = np.histogram(z[:,1], bins = z2_bins, weights = Ut * jac2)
 		counter2, dummy = np.histogram(z[:,1], bins = z2_bins, weights = jac2)
-
+        
 
 		# unitless
 		U1 = np.divide(U1_hist, counter1)
