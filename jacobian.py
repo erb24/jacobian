@@ -344,7 +344,7 @@ def calc_energy_entropy_1d(data, z, dzdx1_traj, dzdy1_traj, Ut, nbins = 50, beta
 		path = 'bandwidth1_' + str(bandwidth1) + '_bandwidth2_' + str(bandwidth2) + '/'
 		os.makedirs(saveapath + 'bandwidth1_' + str(bandwidth1) + '_bandwidth2_' + str(bandwidth2), exist_ok = True)
 		KD1 = KernelDensity(bandwidth = bandwidth1)
-		KD1.fit(z[:,0][:,np.newaxis], sample_weight = weights * np.linalg.norm(np.array([dzdx1_traj, dzdy1_traj])))
+		KD1.fit(z[:,0][:,np.newaxis], sample_weight = weights * jac1)
 		grid1 = np.linspace(np.min(z[:,0]),np.max(z[:,0]),50)
 		samp1 = KD1.score_samples(grid1[:, np.newaxis])
 		samp1 = samp1.reshape(50)
@@ -487,14 +487,14 @@ def calc_energy_entropy_2d(data, z, dzdx1_traj, dzdy1_traj, dzdx2_traj, dzdy2_tr
 		path = 'bandwidth1_' + str(bandwidth1) + '_bandwidth2_' + str(bandwidth2) + '/'
 		os.makedirs(savepath + 'bandwidth1_' + str(bandwidth1) + '_bandwidth2_' + str(bandwidth2), exist_ok = True)
 		KD1 = KernelDensity(bandwidth = bandwidth1)
-		KD1.fit(z[:,0][:,np.newaxis], sample_weight = weights * np.linalg.norm(np.array([dzdx1_traj, dzdy1_traj])))
+		KD1.fit(z[:,0][:,np.newaxis], sample_weight = weights * jac1)
 		grid1 = np.linspace(np.min(z[:,0]),np.max(z[:,0]),50)
 		samp1 = KD1.score_samples(grid1[:, np.newaxis])
 		samp1 = samp1.reshape(50)
 		p1 = np.exp(samp1)
 
 		KD2 = KernelDensity(bandwidth = bandwidth2)
-		KD2.fit(z[:,1][:,np.newaxis], sample_weight = weights * np.linalg.norm(np.array([dzdx2_traj, dzdy2_traj])))
+		KD2.fit(z[:,1][:,np.newaxis], sample_weight = weights * jac2)
 		grid2 = np.linspace(np.min(z[:,1]),np.max(z[:,1]),50)
 		samp2 = KD2.score_samples(grid2[:, np.newaxis])
 		samp2 = samp2.reshape(50)
