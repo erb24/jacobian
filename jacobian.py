@@ -288,7 +288,7 @@ def jacobian_2d(data, z, z_bins = 50, nbins = 50, beta = 1, print_figures = True
 	return z1_hist, z2_hist, dzdx1, dzdy1, dzdx2, dzdy2, dzdx1_traj, dzdy1_traj, dzdx2_traj, dzdy2_traj
 
 def calc_energy_entropy_1d(data, z, dzdx1_traj, dzdy1_traj, Ut, nbins = 50, beta = 1, print_figures = True, NPT = False, KDE = False,
-						  bandwidth1 = 1.0, bandwidth2 = 1.0, savepath = './'):
+						  bandwidth1 = 1.0, savepath = './'):
 	'''
 	Calculates the Jacobian of a nonlinear transformation of the input trajectory; assumes the latent space is two-dimensional.
 	---------
@@ -341,8 +341,8 @@ def calc_energy_entropy_1d(data, z, dzdx1_traj, dzdy1_traj, Ut, nbins = 50, beta
 	z1_bins = np.linspace(z[:,0].min() - 1e-9, z[:,0].max() + 1e-9, nbins + 1)
 
 	if KDE:    
-		path = 'bandwidth1_' + str(bandwidth1) + '_bandwidth2_' + str(bandwidth2) + '/'
-		os.makedirs(saveapath + 'bandwidth1_' + str(bandwidth1) + '_bandwidth2_' + str(bandwidth2), exist_ok = True)
+		path = 'bandwidth1_' + str(bandwidth1) + '/'
+		os.makedirs(savepath + 'bandwidth1_' + str(bandwidth1), exist_ok = True)
 		KD1 = KernelDensity(bandwidth = bandwidth1)
 		KD1.fit(z[:,0][:,np.newaxis], sample_weight = weights * jac1)
 		grid1 = np.linspace(np.min(z[:,0]),np.max(z[:,0]),50)
